@@ -26,7 +26,7 @@ uint8_t gHue = 0;
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS_MOUTH, DATA_PIN_MOUTH, NEO_GRB + NEO_KHZ800);
 
 //Button & Sensor
-int btnCount = 3;
+int btnCount = 3;   //20 for testing
 QTRSensors qtr;
 const uint8_t SensorCount = 2;
 uint16_t sensorValues[SensorCount];
@@ -103,31 +103,33 @@ void loop() {
       break;
 
     case 1:
-      //      earFade();
-      rainbowWithGlitter();
+            earFade();
+flashlight();
 
       FastLED.show();
       FastLED.clear();
       break;
 
     case 2:
-      //      earFade();
+            earFade();
+//      juggle();
       kitt();
       FastLED.show();
-
       break;
-    case 3:
-      eyeLed();
-      FastLED.show();
-      FastLED.clear();
-Serial.println(span);
-delay(40);
-//      Serial.print("left: ");
-//      Serial.print(sensorL);
-//      Serial.print("  ");
-//      Serial.print("right: ");
-//      Serial.print(sensorR);
-//      Serial.println("  ");
+
+
+    //for tests
+    case 20:
+      Serial.println(span);
+      delay(40);
+      //      Serial.print("left Eye: ");
+      //      Serial.print(sensorL);
+      //      Serial.print("  ");
+      //      Serial.print("right Eye: ");
+      //      Serial.print(sensorR);
+      //      Serial.print("MIC out: ");
+      //      Serial.print(peakToPeak);
+      //      Serial.println("  ");
       break;
   }
 }

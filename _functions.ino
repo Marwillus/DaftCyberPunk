@@ -17,9 +17,9 @@ void longPress1() {
 //    Serial.print("right: ");
 //    Serial.print(sensorR);
 //    Serial.print("  ");
-//  rainbowWithGlitter();
-//  FastLED.show();
-//      FastLED.clear();
+  rainbowWithGlitter();
+  FastLED.show();
+      FastLED.clear();
 
 }
 
@@ -69,7 +69,21 @@ void initializeEye(int arr[], int arrLength) {
   }
 }
 
+void flashlight() {
+  for (int i = 0; i < NUM_LEDS_EYES; i++) {
+    ledsEyes[i] = CRGB::White;
+  }
+}
 
+void juggle() {
+  // eight colored dots, weaving in and out of sync with each other
+  fadeToBlackBy( ledsEyes, NUM_LEDS_EYES, 20);
+  byte dothue = 0;
+  for( int i = 0; i < 8; i++) {
+    ledsEyes[beatsin16( i+7, 0, NUM_LEDS_EYES-1 )] |= CHSV(dothue, 200, 255);
+    dothue += 32;
+  }
+}
 
 ////////////////////////////////////////////////// mouth effects////////////////////
 void rainbow() {
@@ -94,13 +108,13 @@ void addGlitter( fract8 chanceOfGlitter)
 }
 
 void kitt() {
-  fadeToBlackBy( ledsEyes, NUM_LEDS_EYES, 1);
+//  fadeToBlackBy( ledsEyes, NUM_LEDS_EYES, 1);
   fadeToBlackBy( ledsMouth, NUM_LEDS_MOUTH, 8);
 
-  int posE = beatsin16( 20, 0, NUM_LEDS_EYES - 1);
+//  int posE = beatsin16( 20, 0, NUM_LEDS_EYES - 1);
   int posM = beatsin16( 20, 0, NUM_LEDS_MOUTH - 1);
 
-  ledsEyes[posE] = CRGB(0, 255, 0);
+//  ledsEyes[posE] = CRGB(0, 255, 0);
   ledsMouth[posM] = CRGB(255, 0, 0);
 }
 
